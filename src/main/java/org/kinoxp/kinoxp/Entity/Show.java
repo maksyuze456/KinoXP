@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
+@Table (name="Shows")
 public class Show {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)

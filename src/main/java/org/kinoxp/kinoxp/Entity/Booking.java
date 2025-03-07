@@ -15,6 +15,9 @@ public class Booking {
     private String phone;
     private int amount;
 
+    @ManyToOne
+    @JoinColumn(name = "show_id", referencedColumnName = "showid")
+    private Show show;
     public Booking() {
 
     }

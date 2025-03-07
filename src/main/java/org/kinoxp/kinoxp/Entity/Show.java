@@ -2,6 +2,7 @@ package org.kinoxp.kinoxp.Entity;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table (name="Shows")
@@ -13,6 +14,9 @@ public class Show {
     private LocalDate date;
 
     private LocalTime time;
+
+    @OneToMany(mappedBy = "show")
+    private List<Booking> bookings;
     public Show(LocalDate localDate, LocalTime localTime){}
     public Show(int showID, LocalDate date, LocalTime time) {
         this.showID = showID;

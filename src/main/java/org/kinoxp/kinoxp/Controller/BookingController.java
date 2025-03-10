@@ -39,13 +39,13 @@ public class BookingController {
 
     // Det JSON der bliver sendt i dette POST request bliver parset til en Booking object som gemmes i databasen
     @PostMapping("/create")
-    public ResponseEntity<Booking> createBooking(@RequestBody Map<String, String> body){
+    public ResponseEntity<Booking> createBooking(@RequestBody Booking body){
         Booking booking = new Booking();
 
-        booking.setName(body.get("name"));
-        booking.setLastName(body.get("lastName"));
-        booking.setPhone(body.get("phone"));
-        booking.setAmount(Integer.valueOf(body.get("amount")));
+        booking.setName(body.getName());
+        booking.setLastName(body.getLastName());
+        booking.setPhone(body.getPhone());
+        booking.setAmount(body.getAmount());
 
         Booking savedBooking = bookingRepository.save(booking);
         return new ResponseEntity<Booking>(savedBooking, HttpStatus.CREATED);

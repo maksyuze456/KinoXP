@@ -32,7 +32,7 @@ public class BookingController {
     }
 
     // Slet booking efter Id
-    @PostMapping("/{id}")
+    @DeleteMapping("/{id}")
     public void deleteBookingById(@PathVariable Long id) {
         bookingRepository.deleteById(id);
     }
@@ -52,16 +52,16 @@ public class BookingController {
     }
 
     // Opdaterer eksisterende Booking i db. Request tager i mod opdateret JSON, som i metoden bruges til opdateringen af objektet
-    @PostMapping("/update/{id}")
-    public ResponseEntity<Booking> updateBookingById(@PathVariable Long id, @RequestBody Map<String,String> body){
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Booking> updateBookingById(@PathVariable Long id, @RequestBody Booking body){
         Optional<Booking> booking = bookingRepository.findById(id);
 
         if (booking.isPresent()) {
             Booking existingBooking = booking.get();
 
-            existingBooking.setName(body.get("name"));
-            existingBooking.setLastName(body.get("lastName"));
-            existingBooking.setPhone(body.get("phone"));
+            existingBooking.setName(body.getName());
+            existingBooking.setLastName(body.getLastName());
+            existingBooking.setPhone(body.getPhone());
 
             Booking updatedBooking = bookingRepository.save(existingBooking);
             return new ResponseEntity<Booking>(updatedBooking, HttpStatus.OK);

@@ -33,8 +33,9 @@ public class BookingController {
 
     // Slet booking efter Id
     @DeleteMapping("/{id}")
-    public void deleteBookingById(@PathVariable Long id) {
+    public ResponseEntity<Booking> deleteBookingById(@PathVariable Long id) {
         bookingRepository.deleteById(id);
+        return new ResponseEntity<Booking>(HttpStatus.valueOf(204));
     }
 
     // Det JSON der bliver sendt i dette POST request bliver parset til en Booking object som gemmes i databasen

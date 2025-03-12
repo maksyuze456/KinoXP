@@ -14,14 +14,18 @@ public class Show {
     private LocalDate date;
 
     private LocalTime time;
+    @ManyToOne
+    @JoinColumn(name = "filmid", referencedColumnName = "filmid")
+    private Film film;
 
-    @OneToMany(mappedBy = "show")
-    private List<Booking> bookings;
-    public Show(LocalDate localDate, LocalTime localTime){}
-    public Show(int showID, LocalDate date, LocalTime time) {
-        this.showID = showID;
+    //@ManyToOne(mappedBy = "show")
+   // private List<Booking> bookings;
+
+    public Show(LocalDate date, LocalTime time) {
         this.date = date;
         this.time = time;
+
+
     }
 
     public Show() {
@@ -52,5 +56,3 @@ public class Show {
         this.time = tid;
     }
 }
-
-

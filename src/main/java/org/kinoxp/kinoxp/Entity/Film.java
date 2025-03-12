@@ -3,6 +3,7 @@ package org.kinoxp.kinoxp.Entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Film {
@@ -26,7 +27,8 @@ public class Film {
 
     @Column(name = "release_date")
     private LocalDate releaseDate;
-
+    @OneToMany(mappedBy = "film")
+    private List<Show> show;
     public Film() {}
 
     public Film(String title, String description, int duration, String genre, LocalDate releaseDate) {

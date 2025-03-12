@@ -32,36 +32,37 @@ public class BookingController {
     }
 
     // Slet booking efter Id
-    @PostMapping("/{id}")
-    public void deleteBookingById(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Booking> deleteBookingById(@PathVariable Long id) {
         bookingRepository.deleteById(id);
+        return new ResponseEntity<Booking>(HttpStatus.valueOf(204));
     }
 
     // Det JSON der bliver sendt i dette POST request bliver parset til en Booking object som gemmes i databasen
     @PostMapping("/create")
-    public ResponseEntity<Booking> createBooking(@RequestBody Map<String, String> body){
+    public ResponseEntity<Booking> createBooking(@RequestBody Booking body){
         Booking booking = new Booking();
 
-        booking.setName(body.get("name"));
-        booking.setLastName(body.get("lastName"));
-        booking.setPhone(body.get("phone"));
-        booking.setAmount(Integer.valueOf(body.get("amount")));
+        booking.setName(body.getName());
+        booking.setLastName(body.getLastName());
+        booking.setPhone(body.getPhone());
+        booking.setAmount(body.getAmount());
 
         Booking savedBooking = bookingRepository.save(booking);
         return new ResponseEntity<Booking>(savedBooking, HttpStatus.CREATED);
     }
 
     // Opdaterer eksisterende Booking i db. Request tager i mod opdateret JSON, som i metoden bruges til opdateringen af objektet
-    @PostMapping("/update/{id}")
-    public ResponseEntity<Booking> updateBookingById(@PathVariable Long id, @RequestBody Map<String,String> body){
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Booking> updateBookingById(@PathVariable Long id, @RequestBody Booking body){
         Optional<Booking> booking = bookingRepository.findById(id);
 
         if (booking.isPresent()) {
             Booking existingBooking = booking.get();
 
-            existingBooking.setName(body.get("name"));
-            existingBooking.setLastName(body.get("lastName"));
-            existingBooking.setPhone(body.get("phone"));
+            existingBooking.setName(body.getName());
+            existingBooking.setLastName(body.getLastName());
+            existingBooking.setPhone(body.getPhone());
 
             Booking updatedBooking = bookingRepository.save(existingBooking);
             return new ResponseEntity<Booking>(updatedBooking, HttpStatus.OK);

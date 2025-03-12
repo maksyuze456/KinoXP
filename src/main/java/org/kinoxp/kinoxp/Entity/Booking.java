@@ -61,4 +61,12 @@ public class Booking {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+    public Show getShow() {
+        return show;
+    }
+
+    public void setShow(Show show) {
+        this.show = show;
+    }
 }

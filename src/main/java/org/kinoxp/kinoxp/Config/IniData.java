@@ -16,6 +16,7 @@ public class IniData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        // Oprindelige dummydata
         Film film1 = new Film();
         film1.setTitle("The Great Escape");
         film1.setDescription("En spændende flugt fra fængslet.");
@@ -37,10 +38,57 @@ public class IniData implements CommandLineRunner {
         film3.setGenre("Thriller");
         film3.setReleaseDate(LocalDate.of(2023, 3, 22));
 
+        // Ekstra dummydata med kendte, moderne film (udkommet sidste måned)
+        Film film4 = new Film();
+        film4.setTitle("Black Panther: Wakanda Forever");
+        film4.setDescription("En hyldest til Wakanda med en fortsættelse af den populære franchise.");
+        film4.setDuration(162);
+        film4.setGenre("Action/Adventure");
+        film4.setReleaseDate(LocalDate.of(2025, 2, 25)); // Sidste måneds udgivelse
+
+        Film film5 = new Film();
+        film5.setTitle("Avatar: The Way of Water");
+        film5.setDescription("En visuel spektakulær rejse under havets overflade.");
+        film5.setDuration(192);
+        film5.setGenre("Science Fiction/Adventure");
+        film5.setReleaseDate(LocalDate.of(2025, 2, 20)); // Sidste måneds udgivelse
+
+        Film film6 = new Film();
+        film6.setTitle("Spider-Man: Across the Multiverse");
+        film6.setDescription("Spider-Man udforsker nye dimensioner i en episk multiverse-rejse.");
+        film6.setDuration(140);
+        film6.setGenre("Action/Adventure");
+        film6.setReleaseDate(LocalDate.of(2025, 2, 18)); // Sidste måneds udgivelse
+
+        Film film7 = new Film();
+        film7.setTitle("Guardians of the Galaxy: Cosmic Quest");
+        film7.setDescription("Et nyt eventyr med Guardians, der udforsker universets mysterier.");
+        film7.setDuration(130);
+        film7.setGenre("Science Fiction/Adventure");
+        film7.setReleaseDate(LocalDate.of(2025, 2, 22)); // Sidste måneds udgivelse
+
+        Film film8 = new Film();
+        film8.setTitle("Fast & Furious 10");
+        film8.setDescription("Hurtige biler og intense actionsekvenser i den tiende udgave.");
+        film8.setDuration(135);
+        film8.setGenre("Action");
+        film8.setReleaseDate(LocalDate.of(2025, 2, 15)); // Sidste måneds udgivelse
+
+        Film film9 = new Film();
+        film9.setTitle("Jurassic World: Dominion 2");
+        film9.setDescription("Dinosaurerne er tilbage i en ny og spændende eventyrfortælling.");
+        film9.setDuration(150);
+        film9.setGenre("Science Fiction/Adventure");
+        film9.setReleaseDate(LocalDate.of(2025, 2, 28)); // Sidste måneds udgivelse
+
         filmRepository.save(film1);
         filmRepository.save(film2);
         filmRepository.save(film3);
-
-
+        filmRepository.save(film4);
+        filmRepository.save(film5);
+        filmRepository.save(film6);
+        filmRepository.save(film7);
+        filmRepository.save(film8);
+        filmRepository.save(film9);
     }
 }

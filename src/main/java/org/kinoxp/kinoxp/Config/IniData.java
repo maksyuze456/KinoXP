@@ -1,7 +1,9 @@
 package org.kinoxp.kinoxp.Config;
 
+import org.kinoxp.kinoxp.Entity.Booking;
 import org.kinoxp.kinoxp.Entity.Film;
 import org.kinoxp.kinoxp.Entity.Show;
+import org.kinoxp.kinoxp.Repository.BookingRepository;
 import org.kinoxp.kinoxp.Repository.FilmRepository;
 import org.kinoxp.kinoxp.Repository.ShowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +22,8 @@ public class IniData implements CommandLineRunner {
     FilmRepository filmRepository;
     @Autowired
     ShowRepository showRepository;
-
-
+    @Autowired
+    BookingRepository bookingRepository;
     @Override
     public void run(String... args) throws Exception {
         ArrayList<Show> showList = new ArrayList<>();
@@ -109,5 +111,30 @@ public class IniData implements CommandLineRunner {
 
         showRepository.saveAll(showList);
         System.out.println("Testdata for shows er indsat!");
+
+        Booking booking1 = new Booking();
+        booking1.setName("John");
+        booking1.setLastName("Johnson");
+        booking1.setPhone("24259570");
+        booking1.setAmount(2);
+        booking1.setShow(null);
+
+        Booking booking2 = new Booking();
+        booking2.setName("Brian");
+        booking2.setLastName("Davis");
+        booking2.setPhone("95349570");
+        booking2.setAmount(1);
+        booking2.setShow(null);
+
+        Booking booking3 = new Booking();
+        booking3.setName("Christian");
+        booking3.setLastName("Scott");
+        booking3.setPhone("34305701");
+        booking3.setAmount(2);
+        booking3.setShow(null);
+
+        bookingRepository.save(booking1);
+        bookingRepository.save(booking2);
+        bookingRepository.save(booking3);
     }
 }

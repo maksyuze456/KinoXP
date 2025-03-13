@@ -102,12 +102,15 @@ public class IniData implements CommandLineRunner {
         filmRepository.save(film8);
         filmRepository.save(film9);
 
-        Collections.addAll(showList,
-                new Show(LocalDate.of(2025, 4, 15), LocalTime.of(19, 0)),
-                new Show(LocalDate.of(2025, 6, 10), LocalTime.of(19, 30)),
-                new Show(LocalDate.of(2025, 8, 20), LocalTime.of(20, 0)),
-                new Show(LocalDate.of(2025, 10, 5), LocalTime.of(18, 45))
-        );
+        Show show1 = new Show(LocalDate.of(2025, 4, 15), LocalTime.of(19, 0));
+        Show show2 = new Show(LocalDate.of(2025, 6, 10), LocalTime.of(19, 30));
+        Show show3 = new Show(LocalDate.of(2025, 8, 20), LocalTime.of(20, 0));
+        Show show4 = new Show(LocalDate.of(2025, 10, 5), LocalTime.of(18, 45));
+
+        showList.add(show1);
+        showList.add(show2);
+        showList.add(show3);
+        showList.add(show4);
 
         showRepository.saveAll(showList);
         System.out.println("Testdata for shows er indsat!");
@@ -117,21 +120,21 @@ public class IniData implements CommandLineRunner {
         booking1.setLastName("Johnson");
         booking1.setPhone("24259570");
         booking1.setAmount(2);
-        booking1.setShow(null);
+        booking1.setShow(show1);
 
         Booking booking2 = new Booking();
         booking2.setName("Brian");
         booking2.setLastName("Davis");
         booking2.setPhone("95349570");
         booking2.setAmount(1);
-        booking2.setShow(null);
+        booking2.setShow(show2);
 
         Booking booking3 = new Booking();
         booking3.setName("Christian");
         booking3.setLastName("Scott");
         booking3.setPhone("34305701");
         booking3.setAmount(2);
-        booking3.setShow(null);
+        booking3.setShow(show2);
 
         bookingRepository.save(booking1);
         bookingRepository.save(booking2);

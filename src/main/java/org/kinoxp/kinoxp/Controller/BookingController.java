@@ -1,7 +1,9 @@
 package org.kinoxp.kinoxp.Controller;
 
 import org.kinoxp.kinoxp.Entity.Booking;
+import org.kinoxp.kinoxp.Entity.Show;
 import org.kinoxp.kinoxp.Repository.BookingRepository;
+import org.kinoxp.kinoxp.Repository.ShowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,9 @@ import java.util.Optional;
 @RequestMapping("/booking")
 @RestController
 public class BookingController {
+
+    @Autowired
+    ShowRepository showRepository;
     @Autowired
     BookingRepository bookingRepository;
 
@@ -56,13 +61,21 @@ public class BookingController {
     @PutMapping("/update/{id}")
     public ResponseEntity<Booking> updateBookingById(@PathVariable Long id, @RequestBody Booking body){
         Optional<Booking> booking = bookingRepository.findById(id);
-
-        if (booking.isPresent()) {
+        int showId = body.getShow().getShowID();
+        Optional<Show> show = showRepository.findById(showId);
+        if (booking.isPresent() && show.isPresent()) {
             Booking existingBooking = booking.get();
+            Show existingShow = show.get();
 
             existingBooking.setName(body.getName());
             existingBooking.setLastName(body.getLastName());
             existingBooking.setPhone(body.getPhone());
+            existingBooking.setAmount(body.getAmount());
+
+            existingBooking.setShow(existingShow);
+
+
+
 
             Booking updatedBooking = bookingRepository.save(existingBooking);
             return new ResponseEntity<Booking>(updatedBooking, HttpStatus.OK);

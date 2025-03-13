@@ -2,6 +2,8 @@ package org.kinoxp.kinoxp.Entity;
 
 import jakarta.persistence.*;
 
+import java.util.Optional;
+
 @Entity
 @Table(name = "bookings")
 public class Booking {

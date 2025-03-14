@@ -1,4 +1,4 @@
-package org.kinoxp.kinoxp.Config;
+/*package org.kinoxp.kinoxp.Config;
 
 import org.kinoxp.kinoxp.Entity.Show;
 import org.kinoxp.kinoxp.Repository.ShowRepository;
@@ -32,3 +32,4 @@ public class InitData implements CommandLineRunner {
     }
 }
 
+*/
